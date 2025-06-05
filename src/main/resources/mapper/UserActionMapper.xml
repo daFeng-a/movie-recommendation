@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhang.mapper.UserActionMapper">
+    <insert id="insert">
+        INSERT INTO user_actions(user_id, movie_id, action_type) VALUES (#{userId}, #{movieId}, #{actionType})
+    </insert>
+    <select id="selectByUserId" resultType="com.zhang.entity.UserAction">
+        SELECT * FROM user_actions WHERE user_id = #{userId}
+    </select>
+</mapper>

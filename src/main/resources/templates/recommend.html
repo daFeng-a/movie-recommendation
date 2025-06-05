@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>个性化推荐 - 电影推荐系统</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <h2>为你推荐</h2>
+    <div class="row">
+        <div class="col-md-3" th:each="rec : ${recommendList}">
+            <div class="card mb-4">
+                <img th:src="${rec.movie.posterUrl}" class="card-img-top" alt="海报"/>
+                <div class="card-body">
+                    <h5 th:text="${rec.movie.title}"></h5>
+                    <p th:text="'预测评分：' + ${rec.predictedRating}"></p>
+                    <a th:href="@{/movies/{id}(id=${rec.movie.id})}" class="btn btn-primary">详情</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:if="${#lists.isEmpty(recommendList)}">暂无个性化推荐，先多看看电影吧！</div>
+</div>
+</body>
+</html>

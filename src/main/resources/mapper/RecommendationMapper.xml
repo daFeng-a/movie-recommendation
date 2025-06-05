@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhang.mapper.RecommendationMapper">
+    <insert id="insert" parameterType="com.zhang.entity.Recommendation">
+        INSERT INTO recommendations(user_id, movie_id, predicted_rating)
+        VALUES (#{userId}, #{movieId}, #{predictedRating})
+    </insert>
+    <delete id="deleteByUserId" parameterType="int">
+        DELETE FROM recommendations WHERE user_id = #{userId}
+    </delete>
+    <select id="selectByUserId" resultType="com.zhang.entity.Recommendation">
+        SELECT * FROM recommendations WHERE user_id = #{userId} ORDER BY predicted_rating DESC
+    </select>
+</mapper>

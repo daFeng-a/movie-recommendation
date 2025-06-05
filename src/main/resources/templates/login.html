@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>登录 - 电影推荐系统</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <h2>用户登录</h2>
+    <form th:action="@{/login}" method="post">
+        <div class="mb-3">
+            <label>用户名</label>
+            <input type="text" name="username" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+            <label>密码</label>
+            <input type="password" name="password" class="form-control" required/>
+        </div>
+        <button type="submit" class="btn btn-primary">登录</button>
+        <a th:href="@{/register}">没有账号？注册</a>
+    </form>
+    <p th:if="${param.error}" class="text-danger">用户名或密码错误</p>
+</div>
+</body>
+</html>

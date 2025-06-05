@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${movie.title} + ' - 电影详情'">电影详情</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img th:src="${movie.posterUrl}" class="img-fluid" alt="海报"/>
+        </div>
+        <div class="col-md-8">
+            <h2 th:text="${movie.title}"></h2>
+            <p th:text="'类型：' + ${movie.genres}"></p>
+            <p th:text="'导演：' + ${movie.director}"></p>
+            <p th:text="'剧情简介：' + ${movie.plot}"></p>
+            <!-- 电影播放，如果有videoUrl -->
+            <div th:if="${movie.videoUrl}">
+                <video controls width="100%">
+                    <source th:src="${movie.videoUrl}" type="video/mp4"/>
+                    当前浏览器不支持视频播放
+                </video>
+            </div>
+            <form th:action="@{/rate}" method="post" class="mt-3">
+                <input type="hidden" name="movieId" th:value="${movie.id}"/>
+                <label>评分：</label>
+                <select name="rating">
+                    <option th:each="i : ${#numbers.sequence(0, 5, 1)}" th:value="${i}" th:text="${i}"></option>
+                </select>
+                <button type="submit" class="btn btn-warning">提交评分</button>
+            </form>
+            <form th:action="@{/action}" method="post" style="display:inline;">
+                <input type="hidden" name="movieId" th:value="${movie.id}"/>
+                <input type="hidden" name="actionType" value="favorite"/>
+                <button type="submit" class="btn btn-info">收藏</button>
+            </form>
+            <form th:action="@{/action}" method="post" style="display:inline;">
+                <input type="hidden" name="movieId" th:value="${movie.id}"/>
+                <input type="hidden" name="actionType" value="watch"/>
+                <button type="submit" class="btn btn-success">我看过了</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

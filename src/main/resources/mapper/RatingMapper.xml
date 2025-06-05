@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhang.mapper.RatingMapper">
+    <select id="selectAll" resultType="com.zhang.entity.Rating">
+        SELECT * FROM ratings
+    </select>
+    <select id="selectByUserId" resultType="com.zhang.entity.Rating">
+        SELECT * FROM ratings WHERE user_id = #{userId}
+    </select>
+    <insert id="insert" parameterType="com.zhang.entity.Rating">
+        INSERT INTO ratings(user_id, movie_id, rating) VALUES (#{userId}, #{movieId}, #{rating})
+    </insert>
+</mapper>
