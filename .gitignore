@@ -1,13 +1,16 @@
+# 编译输出目录
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+build/
+out/
 
+# 依赖缓存和下载目录
+.gradle/
+.mvn/
+.cache/
+
+# IDE 相关配置
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -27,12 +30,55 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
 
+# 操作系统相关文件
 ### Mac OS ###
 .DS_Store
+### Windows ###
+Thumbs.db
+
+# 日志文件
+*.log
+
+# 临时文件和备份
+*.bak
+*.swp
+*.tmp
+
+# 数据库连接配置
+*.properties
+*.yml
+*.yaml
+!application.yml # 如果 application.yml 需要纳入版本控制，可以排除它
+
+# 本地环境配置
+.env
+.local
+
+# 缓存文件
+.cache
+.cache.lock
+
+# 代码覆盖率报告
+jacoco.exec
+coverage/
+
+# 生成的 API 文档
+docs/
+
+# 自定义排除目录
+# 例如，如果你有一些临时或测试数据目录可以在这里排除
+temp-data/
+test-data/
+
+# 保留 Maven 包装器
+!.mvn/wrapper/maven-wrapper.jar
+
+# 排除 src 下的构建目录
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
